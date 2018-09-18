@@ -20,7 +20,7 @@ class App():
 ###########Daemonization part ends########################
 #---------------------MAIN-------------------------------#        
         while True:
-            userServer = "poo"
+            userServer = "xxx"
             serverIP = "192.168.0.149"
             portServer = "22"
             pswServer = "root"

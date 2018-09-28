@@ -20,14 +20,13 @@ class App():
 ###########Daemonization part ends########################
 #---------------------MAIN-------------------------------#        
         while True:
-            print(commands.getoutput("pwd"))
-            userServer = "helo"
+            userServer = "eduardo"
             serverIP = "192.168.0.149"
             portServer = "22"
             pswServer = "root"
             host = commands.getoutput("hostname -fs") # Client's host
             user = commands.getoutput("whoami")       # Client's User
-            txtStatus = open("sshStatus.txt", "w")
+            txtStatus = open("/home/software/Escritorio/sshStatus.txt", "w") #change to correct path
             status = commands.getstatusoutput("sshpass -p '' ssh -o StrictHostKeyChecking=no "+userServer+"@"+serverIP+" -p "+portServer)#it verifies if public key is on the server  
             if status[0] == 0: # return 0 whit no errors. Public key on in the server
                 print("Key found")

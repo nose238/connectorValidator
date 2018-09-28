@@ -11,9 +11,22 @@ if connectionValidator() != 0:
 	print("You have no SSH connection")
 else:
 	##########read server data
-	userServer = "eduardo"
-	serverIP = "192.168.0.149"
-	portServer = "22"
+	temp = 0 #used to eliminate the last character in strings
+	txt = open("userServer.txt", "r")
+	userServer = txt.read()
+	temp = len(userServer)
+	userServer = userServer[:temp-1]
+	txt.close()
+	txt = open("serverIP.txt", "r")
+	serverIP = txt.read()
+	temp = len(serverIP)
+	serverIP = serverIP[:temp-1]
+	txt.close()
+	txt = open("portServer.txt", "r")
+	portServer = txt.read()
+	temp = len(portServer)
+	portServer = portServer[:temp-1]
+	txt.close()
 	##########read client data
 	txt = open("SOPORTE/clientName.txt", "r")
 	clientName = txt.read()
@@ -24,10 +37,11 @@ else:
 	txt = open("SOPORTE/ipHost.txt", "r")
 	ipHost = txt.read()
 	txt.close() 
+	########## 
 	groupWorkingDirectory = commands.getoutput("sshpass -p '' ssh -o StrictHostKeyChecking=no "
 		+userServer+"@"+serverIP+" -p "+portServer+
 		" ' if [ -d /"+clientName+"/ ]; then echo \"exists\" ; else mkdir "+clientName+"; fi ' ")
-
+	
 	clientWorkingDirectory = commands.getoutput("sshpass -p '' ssh -o StrictHostKeyChecking=no "
 		+userServer+"@"+serverIP+" -p "+portServer+
 		" ' if [ -d /"+hostName+ipHost+"/ ]; then echo \"exists\" ; else cd "+clientName+"; mkdir "+hostName+"@"+ipHost+"; fi ' ")

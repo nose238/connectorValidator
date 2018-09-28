@@ -20,10 +20,28 @@ class App():
 ###########Daemonization part ends########################
 #---------------------MAIN-------------------------------#        
         while True:
-            userServer = "eduardo"
-            serverIP = "192.168.0.149"
-            portServer = "22"
-            pswServer = "root"
+            ##########read server data
+            temp = 0 #used to eliminate the last character in strings
+            txt = open("/home/software/Escritorio/userServer.txt", "r")
+            userServer = txt.read()
+            temp = len(userServer)
+            userServer = userServer[:temp-1]
+            txt.close()
+            txt = open("/home/software/Escritorio/serverIP.txt", "r")
+            serverIP = txt.read()
+            temp = len(serverIP)
+            serverIP = serverIP[:temp-1]
+            txt.close()
+            txt = open("/home/software/Escritorio/portServer.txt", "r")
+            portServer = txt.read()
+            temp = len(portServer)
+            portServer = portServer[:temp-1]
+            txt.close()
+            txt = open("/home/software/Escritorio/pswServer.txt", "r")
+            pswServer = txt.read()
+            temp = len(pswServer)
+            pswServer = pswServer[:temp-1]
+            txt.close()
             host = commands.getoutput("hostname -fs") # Client's host
             user = commands.getoutput("whoami")       # Client's User
             txtStatus = open("/home/software/Escritorio/sshStatus.txt", "w") #change to correct path
